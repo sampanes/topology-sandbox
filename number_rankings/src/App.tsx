@@ -106,7 +106,6 @@ const TIERS = [
     borderColor: 'rgba(251, 191, 36, 0.4)',
     glowColor: 'rgba(251, 191, 36, 0.3)',
     textColor: '#D97706',
-    icon: '👑',
   },
   {
     id: 'a',
@@ -119,7 +118,6 @@ const TIERS = [
     borderColor: 'rgba(156, 163, 175, 0.4)',
     glowColor: 'rgba(156, 163, 175, 0.3)',
     textColor: '#6B7280',
-    icon: '⭐',
   },
   {
     id: 'b',
@@ -132,13 +130,22 @@ const TIERS = [
     borderColor: 'rgba(180, 83, 9, 0.4)',
     glowColor: 'rgba(180, 83, 9, 0.3)',
     textColor: '#B45309',
-    icon: '🏅',
   },
 ];
 
 const ITEM_SIZE = 64; // px
 const ITEM_GAP = 10; // px
 const ITEM_SLOT = ITEM_SIZE + ITEM_GAP;
+
+// Deterministic random styling for "scattered" look
+const getScatteredStyle = (itemId: number) => {
+  const rotation = ((itemId * 137) % 40) - 20; // -20 to 20 deg
+  const offsetX = ((itemId * 197) % 30) - 15; // -15 to 15 px
+  const offsetY = ((itemId * 223) % 20) - 10; // -10 to 10 px
+  return {
+    transform: `rotate(${rotation}deg) translate(${offsetX}px, ${offsetY}px)`,
+  };
+};
 
 interface DragState {
   itemId: number;
@@ -439,7 +446,6 @@ export default function App() {
                     className={`flex-shrink-0 w-20 md:w-24 flex flex-col items-center justify-center
                       bg-gradient-to-b ${tier.gradient} relative`}
                   >
-                    <span className="text-2xl md:text-3xl mb-0.5">{tier.icon}</span>
                     <span className="text-2xl md:text-3xl font-black text-white drop-shadow-lg">
                       {tier.label}
                     </span>
@@ -503,14 +509,14 @@ export default function App() {
         {/* Item Pool */}
         <div
           ref={poolRef}
-          className={`bg-slate-800/40 backdrop-blur-sm rounded-2xl p-4 md:p-5 border border-slate-700/50
+          className={`bg-slate-800/40 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-slate-700/50
             transition-all duration-300
             ${dropTarget?.tierId === null && isDraggingItem ? 'ring-2 ring-indigo-400/50 bg-slate-800/60' : ''}`}
         >
-          <h2 className="text-slate-400 text-sm font-semibold mb-3 flex items-center gap-2 uppercase tracking-wider">
-            <span className="text-base">📦</span> Available Numbers
+          <h2 className="text-slate-400 text-sm font-semibold mb-6 flex items-center gap-2 uppercase tracking-wider">
+            Available Numbers
           </h2>
-          <div className="flex flex-wrap gap-2.5 min-h-[80px] content-start">
+          <div className="flex flex-wrap gap-6 min-h-[120px] content-start justify-center">
             {getDisplayItems(null).map((itemId, idx) => {
               if (itemId === -1) {
                 return (
@@ -531,9 +537,12 @@ export default function App() {
                     transition-all duration-200 bg-white/90 backdrop-blur-sm
                     flex items-center justify-center p-2.5
                     border-2 border-slate-200/80 hover:border-indigo-300
-                    hover:shadow-lg hover:shadow-indigo-500/10 hover:scale-105
+                    hover:shadow-lg hover:shadow-indigo-500/10 hover:scale-110 hover:rotate-0
                     ${isBeingDragged ? 'opacity-30 scale-95' : 'opacity-100'}`}
-                  style={{ touchAction: 'none' }}
+                  style={{ 
+                    touchAction: 'none',
+                    ...(!isBeingDragged ? getScatteredStyle(itemId) : {})
+                  }}
                 >
                   <div className="w-full h-full text-indigo-500">
                     {handDrawnNumerals[itemId]}

@@ -75,3 +75,8 @@ The project utilizes a consistent "Technical Blueprint" aesthetic across the sui
 - **Bundler:** [Vite](https://vitejs.dev/)
 - **Styling:** [Tailwind CSS](https://tailwindcss.com/)
 - **Graphics:** [Paper.js](http://paperjs.org/) (for complex vector math and boolean operations)
+
+
+## How to just use it online:
+
+[Sampanes Topology Page](https://sampanes.github.io/topology-sandbox/)
