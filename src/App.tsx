@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 import DrawCanvasApp from "../draw_canvas/src/App";
 import NumberRankingsApp from "../number_rankings/src/App";
+import PlaySlidesApp from "../play_slides/src/App";
+import "../play_slides/src/index.css";
 
-type View = "home" | "draw-canvas" | "number-rankings";
+type View = "home" | "draw-canvas" | "number-rankings" | "play-slides";
 
 const HASH_TO_VIEW: Record<string, View> = {
   "#draw-canvas": "draw-canvas",
   "#number-rankings": "number-rankings",
+  "#play-slides": "play-slides",
 };
 
 function getViewFromHash(hash: string): View {
@@ -75,6 +78,13 @@ function HomeScreen() {
             title="Draw Canvas"
             subtitle="Topological Manifold Sandbox"
           />
+          <ProjectCard
+            href="#play-slides"
+            accentClass="border-emerald-500/20 hover:border-emerald-400/50 hover:text-emerald-300"
+            icon="Slide"
+            title="Play Slides"
+            subtitle="Topology of Everyday Things"
+          />
         </div>
       </div>
     </div>
@@ -96,6 +106,10 @@ export default function App() {
 
   if (view === "number-rankings") {
     return <NumberRankingsApp />;
+  }
+
+  if (view === "play-slides") {
+    return <PlaySlidesApp />;
   }
 
   return <HomeScreen />;
