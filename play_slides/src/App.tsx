@@ -14,9 +14,7 @@ import {
 import ThreeScene, { type ThreeSceneSource } from "./components/ThreeScene";
 
 interface TopologyInfo {
-  genus: number;
-  boundaries: number;
-  boundaryLabels: string[];
+  tunnels: number;
   description: string;
   equivalent: string;
 }
@@ -48,17 +46,15 @@ interface SlideConfig {
 const slides: SlideConfig[] = [
   {
     title: "Shoe",
-    subtitle: "Used Here as a Sock Stand-In",
+    subtitle: "A Simple Closed Pouch",
     bgColor: "#080e1a",
     accentColor: "#6366f1",
     icon: "Shoe",
     topology: {
-      genus: 0,
-      boundaries: 1,
-      boundaryLabels: ["Ankle opening"],
+      tunnels: 0,
       description:
-        "Like a sock, a shoe shell is organized around a main entry opening and a closed distal end. For this presentation it serves as the imported stand-in for the sock slide.",
-      equivalent: "Disk-like surface with 1 boundary",
+        "A shoe shell is a simple pouch; one opening at the ankle and a fully closed toe end. There are no through-tunnels piercing the surface, so it has zero tunnels.",
+      equivalent: "Eq: Disk-like surface with 1 boundary",
     },
     media: {
       kind: "3d",
@@ -68,17 +64,15 @@ const slides: SlideConfig[] = [
   },
   {
     title: "Pants",
-    subtitle: "Three Openings, Zero Handles",
+    subtitle: "Two Tunnels for Two Legs",
     bgColor: "#060d1f",
     accentColor: "#3b82f6",
     icon: "Pant",
     topology: {
-      genus: 0,
-      boundaries: 3,
-      boundaryLabels: ["Waist", "Left ankle", "Right ankle"],
+      tunnels: 2,
       description:
-        "A pair of pants has three boundary openings and no handle. It is the classic pair-of-pants surface in topology.",
-      equivalent: "Genus 0 surface with 3 boundaries",
+        "Pants provide two distinct paths through the surface; one for each leg. Each leg tunnel is a through-channel from the waist opening down to an ankle opening, giving the surface 2 tunnels.",
+      equivalent: "Eq: A flat bandit mask with two eye holes",
     },
     media: {
       kind: "3d",
@@ -88,41 +82,19 @@ const slides: SlideConfig[] = [
   },
   {
     title: "T-Shirt",
-    subtitle: "Four Openings, Still Genus Zero",
+    subtitle: "Three Tunnels for Limbs and Torso",
     bgColor: "#150808",
     accentColor: "#ef4444",
     icon: "Shirt",
     topology: {
-      genus: 0,
-      boundaries: 4,
-      boundaryLabels: ["Neck", "Bottom hem", "Left sleeve", "Right sleeve"],
+      tunnels: 3,
       description:
-        "A shirt has four boundary openings but still no tunnel through the surface, so its genus remains 0.",
-      equivalent: "Genus 0 surface with 4 boundaries",
+        "A t-shirt has three through-paths for the body: one torso tunnel connecting neck to hem, and one tunnel for each sleeve. Together these three limb-and-torso paths give the surface 3 tunnels.",
+      equivalent: "Eq: something flat with 3 holes lol",
     },
     media: {
       kind: "3d",
       source: { kind: "gltf", url: tshirtGlbUrl },
-      cornerLabel: "Imported GLB",
-    },
-  },
-  {
-    title: "Coffee Mug",
-    subtitle: "The Classic Genus-1 Surface",
-    bgColor: "#100e08",
-    accentColor: "#f59e0b",
-    icon: "Mug",
-    topology: {
-      genus: 1,
-      boundaries: 1,
-      boundaryLabels: ["Top opening"],
-      description:
-        "The handle creates a tunnel through the surface, making the mug genus 1. It is topologically equivalent to a torus with one boundary.",
-      equivalent: "Torus with 1 boundary (genus 1)",
-    },
-    media: {
-      kind: "3d",
-      source: { kind: "gltf", url: coffeeGlbUrl },
       cornerLabel: "Imported GLB",
     },
   },
@@ -133,11 +105,9 @@ const slides: SlideConfig[] = [
     accentColor: "#c084fc",
     icon: "GIF",
     topology: {
-      genus: 0,
-      boundaries: 1,
-      boundaryLabels: ["Single edge loop"],
+      tunnels: 1,
       description:
-        "The Mobius strip is non-orientable and has only one boundary component. The animation is useful for showing how the surface twists back into itself.",
+        "The Möbius strip is non-orientable: a half-twist in the band means the surface has only one side and one edge. It has 1 tunnel in the non-orientable sense, and the animation makes the twist visible as the surface folds back into itself.",
       equivalent: "Non-orientable strip with 1 boundary",
     },
     media: {
@@ -149,25 +119,21 @@ const slides: SlideConfig[] = [
     },
   },
   {
-    title: "Klein Bottle",
-    subtitle: "Immersed Non-Orientable Surface",
-    bgColor: "#071019",
-    accentColor: "#22d3ee",
-    icon: "GIF",
+    title: "Coffee Mug",
+    subtitle: "The Classic Single-Tunnel Surface",
+    bgColor: "#100e08",
+    accentColor: "#f59e0b",
+    icon: "Mug",
     topology: {
-      genus: 2,
-      boundaries: 0,
-      boundaryLabels: ["Closed surface"],
+      tunnels: 1,
       description:
-        "The Klein bottle cannot be embedded in ordinary 3D space without self-intersection, so the GIF is useful here as a conceptual visualization.",
-      equivalent: "Closed non-orientable surface",
+        "The handle punches exactly one through-tunnel through the ceramic, making the mug topologically equivalent to a torus with one boundary. Remove the handle and you have a bowl; add it back and you have 1 tunnel.",
+      equivalent: "Eq: A donut that your kid took a tiny bite out of",
     },
     media: {
-      kind: "image",
-      src: kleinBottleGifUrl,
-      alt: "Klein bottle animation",
-      fit: "contain",
-      cornerLabel: "Animated GIF",
+      kind: "3d",
+      source: { kind: "gltf", url: coffeeGlbUrl },
+      cornerLabel: "Imported GLB",
     },
   },
   {
@@ -177,17 +143,35 @@ const slides: SlideConfig[] = [
     accentColor: "#a3e635",
     icon: "GIF",
     topology: {
-      genus: 1,
-      boundaries: 0,
-      boundaryLabels: ["Closed loop"],
+      tunnels: 1,
       description:
-        "This animation shows a cylindrical tube closing into a torus, which is a useful visual bridge from boundary-count thinking into genus thinking.",
+        "Watch the Red interior of the tube get sealed inside as the two boundary circles are joined. The Red interior becomes trapped inside the Blue exterior, creating a distinct inside and outside; the hallmark of an orientable closed surface with 1 tunnel.",
       equivalent: "Torus (genus 1, closed surface)",
     },
     media: {
       kind: "image",
       src: tubeTorusGifUrl,
       alt: "Tube to torus animation",
+      fit: "contain",
+      cornerLabel: "Animated GIF",
+    },
+  },
+  {
+    title: "Tube to Klein Bottle",
+    subtitle: "Immersed Non-Orientable Surface",
+    bgColor: "#071019",
+    accentColor: "#22d3ee",
+    icon: "GIF",
+    topology: {
+      tunnels: 2,
+      description:
+        "Instead of joining rim to rim, one end narrows, passes through its own wall in a self-intersection, and flares back out to weld the Blue exterior directly to the Red interior. This maneuver proves that inside and outside are the same side; the surface has no trapped volume, and its non-orientable genus is 2.",
+      equivalent: "Closed non-orientable surface",
+    },
+    media: {
+      kind: "image",
+      src: kleinBottleGifUrl,
+      alt: "Klein bottle animation",
       fit: "contain",
       cornerLabel: "Animated GIF",
     },
@@ -342,24 +326,7 @@ function SlideFrame({
                   fontFamily: "monospace",
                 }}
               >
-                <span style={{ fontSize: "0.9rem" }}>g</span> = {slide.topology.genus}
-              </span>
-              <span
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.35rem",
-                  padding: "0.25rem 0.6rem",
-                  borderRadius: "9999px",
-                  background: "rgba(255,255,255,0.06)",
-                  border: "1px solid rgba(255,255,255,0.12)",
-                  fontSize: "0.72rem",
-                  fontWeight: 600,
-                  color: "rgba(255,255,255,0.7)",
-                  fontFamily: "monospace",
-                }}
-              >
-                b = {slide.topology.boundaries}
+                <span style={{ fontSize: "0.9rem" }}>tunnels</span> = {slide.topology.tunnels}
               </span>
             </div>
 
@@ -372,43 +339,6 @@ function SlideFrame({
               }}
             >
               {slide.topology.equivalent}
-            </div>
-
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: "0.3rem",
-                marginBottom: "0.5rem",
-              }}
-            >
-              {slide.topology.boundaryLabels.map((label, i) => (
-                <span
-                  key={i}
-                  style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "0.25rem",
-                    padding: "0.15rem 0.5rem",
-                    borderRadius: "0.3rem",
-                    background: `${slide.accentColor}15`,
-                    fontSize: "0.65rem",
-                    color: slide.accentColor,
-                  }}
-                >
-                  <span
-                    style={{
-                      width: "5px",
-                      height: "5px",
-                      borderRadius: "50%",
-                      background: slide.accentColor,
-                      display: "inline-block",
-                      boxShadow: `0 0 4px ${slide.accentColor}`,
-                    }}
-                  />
-                  {label}
-                </span>
-              ))}
             </div>
 
             <p
@@ -536,16 +466,7 @@ function SlideFrame({
                 fontFamily: "monospace",
               }}
             >
-              GENUS {slide.topology.genus}
-            </span>
-            <span
-              style={{
-                fontSize: "0.65rem",
-                color: "rgba(255,255,255,0.3)",
-                fontFamily: "monospace",
-              }}
-            >
-              b {slide.topology.boundaries}
+              TUNNELS {slide.topology.tunnels}
             </span>
           </div>
         </div>
