@@ -116,17 +116,24 @@ export const NUMERAL_DEFINITIONS: NumeralDefinition[] = [
     label: "9",
     svg: (
       <svg viewBox="0 0 100 100" className="h-full w-full">
-        <path d="M35 82 C60 90 82 72 82 48 C82 26 64 12 46 14 C28 16 18 30 20 42 C22 54 36 60 50 58 C64 56 74 44 72 36" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M35 82 C60 90 82 72 82 48 C82 26 64 12 46 14 C28 16 18 30 20 42 C22 54 36 60 50 58 C64 56 74 44 77 29" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },
   {
     id: "2-curly",
     label: "2",
-    variantLabel: "Curly 2",
+    variantLabel: "Loopy 2",
     svg: (
       <svg viewBox="0 0 100 100" className="h-full w-full">
-        <path d="M26 28 C34 16 56 14 69 22 C78 28 79 41 70 49 C62 56 47 60 39 67 C31 73 31 81 42 82 L74 82" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
+        <path 
+          d="M26 28 C34 16, 56 14, 69 22 C78 28, 79 39, 78 49 C70 100, 13 102, 30 67 C36 56, 66 52, 81 89" 
+          fill="none" 
+          stroke="currentColor" 
+          strokeWidth="10" 
+          strokeLinecap="round" 
+          strokeLinejoin="round" 
+        />
       </svg>
     ),
   },
