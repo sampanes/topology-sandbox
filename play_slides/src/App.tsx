@@ -658,7 +658,7 @@ function ThankYouSlide({ activeSlide }: { activeSlide: number }) {
                 lineHeight: 1.5,
               }}
             >
-              Coffee mugs, donuts, pants, and Klein bottles — topology is hiding in plain sight. Thanks for exploring it.
+              Coffee mugs, donuts, pants, and Klein bottles; topology is hiding in plain sight. Thanks for exploring it.
             </p>
           </div>
 
