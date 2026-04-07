@@ -10,6 +10,7 @@ import {
   mugToDonutGifUrl,
   pantsGlbUrl,
   shoeGlbUrl,
+  thankYouGifUrl,
   tshirtGlbUrl,
   tubeTorusGifUrl,
 } from "./assetPaths";
@@ -313,7 +314,7 @@ function SlideFrame({
               fontFamily: "monospace",
             }}
           >
-            {slideNumber} / {String(slides.length).padStart(2, "0")}
+            {slideNumber} / {String(TOTAL_SLIDES).padStart(2, "0")}
           </div>
 
           <div style={{ fontSize: "3rem", lineHeight: 1 }}>{slide.icon}</div>
@@ -414,7 +415,7 @@ function SlideFrame({
           </div>
 
           <div style={{ display: "flex", gap: "0.35rem", marginTop: "0.3rem" }}>
-            {slides.map((_, i) => (
+            {Array.from({ length: TOTAL_SLIDES }).map((_, i) => (
               <div
                 key={i}
                 style={{
@@ -517,6 +518,282 @@ function SlideFrame({
   );
 }
 
+const TOTAL_SLIDES = slides.length + 1;
+const accentColor = "#f472b6";
+const bgColor = "#110812";
+
+function ThankYouSlide({ activeSlide }: { activeSlide: number }) {
+  const slideIndex = slides.length;
+  const slideNumber = String(slideIndex + 1).padStart(2, "0");
+
+  return (
+    <section data-background-color={bgColor} data-transition="slide">
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          width: "100vw",
+          height: "100vh",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "2.5rem",
+          padding: "2.5rem 3.5rem",
+          boxSizing: "border-box",
+          position: "relative",
+          overflow: "hidden",
+          transform: "scaleX(-1)",
+        }}
+      >
+        {/* Accent glow */}
+        <div
+          style={{
+            position: "absolute",
+            top: "50%",
+            right: "30%",
+            width: "500px",
+            height: "500px",
+            borderRadius: "50%",
+            background: `radial-gradient(circle, ${accentColor}12 0%, transparent 70%)`,
+            transform: "translate(50%, -50%)",
+            pointerEvents: "none",
+          }}
+        />
+
+        {/* Left panel */}
+        <div
+          style={{
+            flex: "0 0 370px",
+            textAlign: "left",
+            display: "flex",
+            flexDirection: "column",
+            gap: "0.9rem",
+            zIndex: 2,
+          }}
+        >
+          <div
+            style={{
+              fontSize: "0.75rem",
+              fontWeight: 600,
+              letterSpacing: "0.15em",
+              textTransform: "uppercase",
+              color: accentColor,
+              fontFamily: "monospace",
+            }}
+          >
+            {slideNumber} / {String(TOTAL_SLIDES).padStart(2, "0")}
+          </div>
+
+          <div style={{ fontSize: "3rem", lineHeight: 1 }}>GIF</div>
+
+          <h2
+            style={{
+              fontSize: "2.8rem",
+              fontWeight: 800,
+              color: "#ffffff",
+              margin: 0,
+              lineHeight: 1.05,
+              letterSpacing: "-0.03em",
+            }}
+          >
+            Thank You
+          </h2>
+
+          <div
+            style={{
+              fontSize: "0.85rem",
+              fontWeight: 500,
+              color: accentColor,
+              textTransform: "uppercase",
+              letterSpacing: "0.08em",
+            }}
+          >
+            Topology in Everyday Life
+          </div>
+
+          <div
+            style={{
+              marginTop: "0.2rem",
+              padding: "0.8rem 1rem",
+              borderRadius: "0.6rem",
+              background: "rgba(255,255,255,0.04)",
+              border: "1px solid rgba(255,255,255,0.08)",
+            }}
+          >
+            <div style={{ display: "flex", gap: "0.5rem", marginBottom: "0.6rem" }}>
+              <span
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "0.35rem",
+                  padding: "0.25rem 0.6rem",
+                  borderRadius: "9999px",
+                  background: `${accentColor}20`,
+                  border: `1px solid ${accentColor}40`,
+                  fontSize: "0.72rem",
+                  fontWeight: 600,
+                  color: accentColor,
+                  fontFamily: "monospace",
+                }}
+              >
+                <span style={{ fontSize: "0.9rem" }}>tunnels</span> = ∞
+              </span>
+            </div>
+
+            <div
+              style={{
+                fontSize: "0.72rem",
+                color: "rgba(255,255,255,0.5)",
+                fontFamily: "monospace",
+                marginBottom: "0.5rem",
+              }}
+            >
+              Eq: A mind bent in on itself
+            </div>
+
+            <p
+              style={{
+                fontSize: "0.78rem",
+                color: "rgba(255,255,255,0.45)",
+                margin: 0,
+                lineHeight: 1.5,
+              }}
+            >
+              Coffee mugs, donuts, pants, and Klein bottles — topology is hiding in plain sight. Thanks for exploring it.
+            </p>
+          </div>
+
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "0.5rem",
+              marginTop: "0.3rem",
+              padding: "0.45rem 0.8rem",
+              borderRadius: "0.45rem",
+              background: "rgba(255,255,255,0.03)",
+              border: "1px solid rgba(255,255,255,0.06)",
+              width: "fit-content",
+            }}
+          >
+            <span style={{ fontSize: "0.72rem", color: "rgba(255,255,255,0.3)" }}>
+              Animated reference slide. Use arrow keys to navigate.
+            </span>
+          </div>
+
+          <div style={{ display: "flex", gap: "0.35rem", marginTop: "0.3rem" }}>
+            {Array.from({ length: TOTAL_SLIDES }).map((_, i) => (
+              <div
+                key={i}
+                style={{
+                  width: i === activeSlide ? "1.8rem" : "0.45rem",
+                  height: "0.35rem",
+                  borderRadius: "9999px",
+                  backgroundColor:
+                    i === activeSlide ? accentColor : "rgba(255,255,255,0.12)",
+                  transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Right panel */}
+        <div
+          style={{
+            flex: "1 1 0",
+            maxWidth: "720px",
+            height: "78vh",
+            maxHeight: "680px",
+            minHeight: "300px",
+            position: "relative",
+            borderRadius: "1.2rem",
+            overflow: "hidden",
+            border: "1px solid rgba(255,255,255,0.06)",
+            boxShadow: `0 30px 80px rgba(0,0,0,0.5), 0 0 40px ${accentColor}08`,
+            background: bgColor,
+            zIndex: 2,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <img
+            src={thankYouGifUrl}
+            alt="Thank you"
+            style={{ maxHeight: "100%", maxWidth: "100%", objectFit: "contain" }}
+          />
+
+          {/* Top-right corner label */}
+          <div
+            style={{
+              position: "absolute",
+              top: "0.8rem",
+              right: "0.8rem",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.35rem",
+              padding: "0.3rem 0.65rem",
+              borderRadius: "0.35rem",
+              background: "rgba(0,0,0,0.35)",
+              backdropFilter: "blur(10px)",
+              border: "1px solid rgba(255,255,255,0.06)",
+              pointerEvents: "none",
+            }}
+          >
+            <div
+              style={{
+                width: "5px",
+                height: "5px",
+                borderRadius: "50%",
+                backgroundColor: "#4ade80",
+                boxShadow: "0 0 5px #4ade80",
+              }}
+            />
+            <span
+              style={{
+                fontSize: "0.65rem",
+                color: "rgba(255,255,255,0.35)",
+                fontFamily: "monospace",
+              }}
+            >
+              Animated GIF
+            </span>
+          </div>
+
+          {/* Top-left tunnels badge */}
+          <div
+            style={{
+              position: "absolute",
+              top: "0.8rem",
+              left: "0.8rem",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.35rem",
+              padding: "0.3rem 0.65rem",
+              borderRadius: "0.35rem",
+              background: `${accentColor}18`,
+              backdropFilter: "blur(10px)",
+              border: `1px solid ${accentColor}30`,
+              pointerEvents: "none",
+            }}
+          >
+            <span
+              style={{
+                fontSize: "0.65rem",
+                fontWeight: 700,
+                color: accentColor,
+                fontFamily: "monospace",
+              }}
+            >
+              TUNNELS ∞
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function App() {
   const deckRef = useRef<HTMLDivElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -590,6 +867,7 @@ export default function App() {
               activeSlide={activeSlide}
             />
           ))}
+          <ThankYouSlide activeSlide={activeSlide} />
         </div>
       </div>
     </div>

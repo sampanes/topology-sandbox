@@ -23,3 +23,7 @@ export const tubeTorusGifUrl = new URL(
   "./assets/gifs/tube_torus.gif",
   import.meta.url
 ).href;
+export const thankYouGifUrl = new URL(
+  "./assets/gifs/thank-you.gif",
+  import.meta.url
+).href;
