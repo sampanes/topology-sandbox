@@ -4,8 +4,10 @@ import "reveal.js/reveal.css";
 import "reveal.js/theme/black.css";
 import {
   coffeeGlbUrl,
+  cowToSphereGifUrl,
   kleinBottleGifUrl,
   mobiusStripGifUrl,
+  mugToDonutGifUrl,
   pantsGlbUrl,
   shoeGlbUrl,
   tshirtGlbUrl,
@@ -45,15 +47,73 @@ interface SlideConfig {
 
 const slides: SlideConfig[] = [
   {
+    title: "Cow to Sphere",
+    subtitle: "Topology-Preserving Deformation",
+    bgColor: "#0e1209",
+    accentColor: "#84cc16",
+    icon: "GIF",
+    topology: {
+      tunnels: 0,
+      description:
+        "A cow and a sphere both have zero tunnels. The animation works because all the legs, ears, and other geometric details can be smoothed away without cutting the surface or gluing new parts together.",
+      equivalent: "Eq: Sphere-like closed surface with 0 tunnels",
+    },
+    media: {
+      kind: "image",
+      src: cowToSphereGifUrl,
+      alt: "Cow morphing into a sphere",
+      fit: "contain",
+      cornerLabel: "Animated GIF",
+    },
+  },
+  {
+    title: "Mug to Donut",
+    subtitle: "The Tunnel Is Preserved",
+    bgColor: "#120d08",
+    accentColor: "#fb923c",
+    icon: "GIF",
+    topology: {
+      tunnels: 1,
+      description:
+        "A coffee mug and a donut each have exactly one tunnel. The animation is a classic example of topology preserving the count of holes even while the geometry changes dramatically.",
+      equivalent: "Eq: Donut-like surface with 1 tunnel",
+    },
+    media: {
+      kind: "image",
+      src: mugToDonutGifUrl,
+      alt: "Coffee mug morphing into a donut",
+      fit: "contain",
+      cornerLabel: "Animated GIF",
+    },
+  },
+  {
+    title: "Coffee Mug",
+    subtitle: "The Classic Single-Tunnel Surface",
+    bgColor: "#100e08",
+    accentColor: "#f59e0b",
+    icon: "Mug",
+    topology: {
+      tunnels: 1,
+      description:
+        "The handle contributes one genuine through-tunnel to the mug. That single handle is why the mug belongs in the same topological family as the donut.",
+      equivalent: "Eq: Donut with a drinking opening",
+    },
+    media: {
+      kind: "3d",
+      source: { kind: "gltf", url: coffeeGlbUrl },
+      cornerLabel: "Imported GLB",
+    },
+  },
+  {
     title: "Shoe",
-    subtitle: "A Simple Closed Pouch",
+    subtitle: "A Simple Pouch with No Tunnel",
     bgColor: "#080e1a",
     accentColor: "#6366f1",
     icon: "Shoe",
     topology: {
       tunnels: 0,
       description:
-        "A shoe shell is a simple pouch; one opening at the ankle and a fully closed toe end. There are no through-tunnels piercing the surface, so it has zero tunnels.",
+        "A shoe has one opening at the ankle but no through-tunnel piercing the surface. It is a useful everyday example of a shape with zero tunnels.",
       equivalent: "Eq: Disk-like surface with 1 boundary",
     },
     media: {
@@ -71,8 +131,8 @@ const slides: SlideConfig[] = [
     topology: {
       tunnels: 2,
       description:
-        "Pants provide two distinct paths through the surface; one for each leg. Each leg tunnel is a through-channel from the waist opening down to an ankle opening, giving the surface 2 tunnels.",
-      equivalent: "Eq: A flat bandit mask with two eye holes",
+        "Pants have two distinct through-tunnels, one for each leg. Topologically, that is what makes them different from a shirt or a shoe.",
+      equivalent: "Eq: A flattened mask with two eye holes",
     },
     media: {
       kind: "3d",
@@ -82,15 +142,15 @@ const slides: SlideConfig[] = [
   },
   {
     title: "T-Shirt",
-    subtitle: "Three Tunnels for Limbs and Torso",
+    subtitle: "Three Tunnels for Torso and Sleeves",
     bgColor: "#150808",
     accentColor: "#ef4444",
     icon: "Shirt",
     topology: {
       tunnels: 3,
       description:
-        "A t-shirt has three through-paths for the body: one torso tunnel connecting neck to hem, and one tunnel for each sleeve. Together these three limb-and-torso paths give the surface 3 tunnels.",
-      equivalent: "Eq: something flat with 3 holes lol",
+        "A t-shirt has one torso tunnel and two sleeve tunnels. Counting those through-paths gives it three tunnels overall.",
+      equivalent: "Eq: A flat surface with three holes",
     },
     media: {
       kind: "3d",
@@ -99,54 +159,16 @@ const slides: SlideConfig[] = [
     },
   },
   {
-    title: "Mobius Strip",
-    subtitle: "One-Sided Surface Animation",
-    bgColor: "#0d0817",
-    accentColor: "#c084fc",
-    icon: "GIF",
-    topology: {
-      tunnels: 1,
-      description:
-        "The Möbius strip is non-orientable: a half-twist in the band means the surface has only one side and one edge. It has 1 tunnel in the non-orientable sense, and the animation makes the twist visible as the surface folds back into itself.",
-      equivalent: "Non-orientable strip with 1 boundary",
-    },
-    media: {
-      kind: "image",
-      src: mobiusStripGifUrl,
-      alt: "Mobius strip animation",
-      fit: "contain",
-      cornerLabel: "Animated GIF",
-    },
-  },
-  {
-    title: "Coffee Mug",
-    subtitle: "The Classic Single-Tunnel Surface",
-    bgColor: "#100e08",
-    accentColor: "#f59e0b",
-    icon: "Mug",
-    topology: {
-      tunnels: 1,
-      description:
-        "The handle punches exactly one through-tunnel through the ceramic, making the mug topologically equivalent to a torus with one boundary. Remove the handle and you have a bowl; add it back and you have 1 tunnel.",
-      equivalent: "Eq: A donut that your kid took a tiny bite out of",
-    },
-    media: {
-      kind: "3d",
-      source: { kind: "gltf", url: coffeeGlbUrl },
-      cornerLabel: "Imported GLB",
-    },
-  },
-  {
     title: "Tube to Torus",
-    subtitle: "Boundary Closure Animation",
+    subtitle: "Closing a Boundary into a Tunnel",
     bgColor: "#101008",
     accentColor: "#a3e635",
     icon: "GIF",
     topology: {
       tunnels: 1,
       description:
-        "Watch the Red interior of the tube get sealed inside as the two boundary circles are joined. The Red interior becomes trapped inside the Blue exterior, creating a distinct inside and outside; the hallmark of an orientable closed surface with 1 tunnel.",
-      equivalent: "Torus (genus 1, closed surface)",
+        "When the two ends of the tube are joined, the open boundaries disappear and a single tunnel remains. This is the standard birth of a torus from a cylinder.",
+      equivalent: "Eq: Torus with 1 tunnel",
     },
     media: {
       kind: "image",
@@ -157,16 +179,36 @@ const slides: SlideConfig[] = [
     },
   },
   {
+    title: "Mobius Strip",
+    subtitle: "One-Sided Surface",
+    bgColor: "#0d0817",
+    accentColor: "#c084fc",
+    icon: "GIF",
+    topology: {
+      tunnels: 1,
+      description:
+        "The Mobius strip is famous because it has only one side and one edge. The half-twist changes orientability while preserving the basic single-band tunnel structure.",
+      equivalent: "Eq: Non-orientable strip with 1 boundary",
+    },
+    media: {
+      kind: "image",
+      src: mobiusStripGifUrl,
+      alt: "Mobius strip animation",
+      fit: "contain",
+      cornerLabel: "Animated GIF",
+    },
+  },
+  {
     title: "Tube to Klein Bottle",
-    subtitle: "Immersed Non-Orientable Surface",
+    subtitle: "A Non-Orientable Closure",
     bgColor: "#071019",
     accentColor: "#22d3ee",
     icon: "GIF",
     topology: {
       tunnels: 2,
       description:
-        "Instead of joining rim to rim, one end narrows, passes through its own wall in a self-intersection, and flares back out to weld the Blue exterior directly to the Red interior. This maneuver proves that inside and outside are the same side; the surface has no trapped volume, and its non-orientable genus is 2.",
-      equivalent: "Closed non-orientable surface",
+        "The Klein bottle closes up in a way that forces the surface to pass through itself in 3D. The resulting object is closed and non-orientable, with a more exotic hole structure than the torus.",
+      equivalent: "Eq: Closed non-orientable surface",
     },
     media: {
       kind: "image",
