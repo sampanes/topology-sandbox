@@ -9,7 +9,7 @@ const TIERS = [
   {
     id: "s",
     label: "S",
-    description: "Supreme",
+    description: "S-TIER",
     gradient: "from-yellow-400 via-amber-400 to-yellow-500",
     bgLight: "rgba(251, 191, 36, 0.08)",
     bgLightHover: "rgba(251, 191, 36, 0.15)",
@@ -20,7 +20,7 @@ const TIERS = [
   {
     id: "a",
     label: "A",
-    description: "Excellent",
+    description: "A-TIER",
     gradient: "from-gray-300 via-gray-400 to-gray-500",
     bgLight: "rgba(156, 163, 175, 0.08)",
     bgLightHover: "rgba(156, 163, 175, 0.15)",
@@ -31,7 +31,7 @@ const TIERS = [
   {
     id: "b",
     label: "B",
-    description: "Good",
+    description: "B-TIER",
     gradient: "from-amber-600 via-amber-700 to-amber-800",
     bgLight: "rgba(180, 83, 9, 0.08)",
     bgLightHover: "rgba(180, 83, 9, 0.15)",
@@ -51,12 +51,14 @@ const getScatteredStyle = (itemId: NumeralId) => {
     (total, char) => total + char.charCodeAt(0),
     0
   );
-  const rotation = ((seed * 137) % 40) - 20;
-  const offsetX = ((seed * 197) % 30) - 15;
-  const offsetY = ((seed * 223) % 20) - 10;
+  const rotation = ((seed * 137) % 70) - 35;
+  const offsetX = ((seed * 197) % 46) - 23;
+  const offsetY = ((seed * 223) % 34) - 17;
+  const scale = 0.92 + (((seed * 251) % 18) / 100);
 
   return {
-    transform: `rotate(${rotation}deg) translate(${offsetX}px, ${offsetY}px)`,
+    transform: `translate(${offsetX}px, ${offsetY}px) rotate(${rotation}deg) scale(${scale})`,
+    zIndex: (seed % 6) + 1,
   };
 };
 
@@ -87,6 +89,7 @@ export default function App() {
 
   const tierRefs = useRef<Record<string, HTMLDivElement | null>>({});
   const poolRef = useRef<HTMLDivElement | null>(null);
+  const poolGridRef = useRef<HTMLDivElement | null>(null);
   const dragStateRef = useRef<DragState | null>(null);
 
   useEffect(() => {
@@ -215,18 +218,23 @@ export default function App() {
       }
 
       const poolEl = poolRef.current;
-      if (poolEl) {
-        const rect = poolEl.getBoundingClientRect();
-        if (pos.y >= rect.top && pos.y <= rect.bottom) {
-          const dropX = pos.x - rect.left - 24;
-          const cols = Math.max(1, Math.floor((rect.width - 48) / ITEM_SLOT));
-          const row = Math.floor(dropX / (cols * ITEM_SLOT));
-          const col = Math.floor((dropX - row * cols * ITEM_SLOT) / ITEM_SLOT);
-          const insertIndex = Math.max(
-            0,
-            Math.min(row * cols + col, poolItems.length)
-          );
-          const dist = Math.abs(pos.y - (rect.top + rect.height / 2));
+      const gridEl = poolGridRef.current;
+      if (poolEl && gridEl) {
+        const poolRect = poolEl.getBoundingClientRect();
+        const gridRect = gridEl.getBoundingClientRect();
+        if (
+          pos.y >= poolRect.top &&
+          pos.y <= poolRect.bottom &&
+          pos.x >= poolRect.left &&
+          pos.x <= poolRect.right
+        ) {
+          const COL_SLOT = ITEM_SIZE + 32; // gap-x-8 = 32px
+          const ROW_SLOT = ITEM_SIZE + 40; // gap-y-10 = 40px
+          const numCols = Math.max(1, Math.round(gridRect.width / COL_SLOT));
+          const col = Math.max(0, Math.min(Math.floor((pos.x - gridRect.left) / COL_SLOT), numCols - 1));
+          const row = Math.max(0, Math.floor((pos.y - gridRect.top) / ROW_SLOT));
+          const insertIndex = Math.max(0, Math.min(row * numCols + col, poolItems.length));
+          const dist = Math.abs(pos.y - (poolRect.top + poolRect.height / 2));
 
           if (dist < bestDist) {
             bestDist = dist;
@@ -344,10 +352,10 @@ export default function App() {
             </a>
           </div>
           <h1 className="mb-2 bg-gradient-to-r from-yellow-300 via-amber-200 to-yellow-400 bg-clip-text text-5xl font-black tracking-tight text-transparent md:text-6xl">
-            Number Rankings
+            Objective Rankings
           </h1>
           <p className="text-base font-medium text-slate-500 md:text-lg">
-            Rank the ten digits, plus your topological variant forms of 2 and 4
+            Rankings that are objective and based entirely on provable fact
           </p>
         </div>
 
@@ -444,12 +452,12 @@ export default function App() {
           }`}
         >
           <h2 className="mb-2 text-sm font-semibold uppercase tracking-wider text-slate-400">
-            Available Digits and Variants
+            Choices
           </h2>
           <p className="mb-6 text-xs text-slate-500">
-            Edit the artwork in <code>number_rankings/src/numerals.tsx</code>
+            Funky lil choices to chose from
           </p>
-          <div className="flex min-h-[120px] flex-wrap content-start justify-center gap-6">
+          <div ref={poolGridRef} className="grid min-h-[180px] grid-cols-6 justify-items-center gap-x-8 gap-y-10 px-4 py-3 max-[720px]:grid-cols-4 max-[520px]:grid-cols-3">
             {getDisplayItems(null).map((itemId, idx) => {
               if (itemId === PLACEHOLDER_ID) {
                 return (
@@ -467,7 +475,7 @@ export default function App() {
                 <div
                   key={itemId}
                   onPointerDown={(e) => handlePointerDown(e, itemId)}
-                  className={`flex h-16 w-16 flex-shrink-0 cursor-grab items-center justify-center rounded-xl border-2 border-slate-200/80 bg-white/90 p-2.5 backdrop-blur-sm transition-all duration-200 active:cursor-grabbing hover:rotate-0 hover:scale-110 hover:border-indigo-300 hover:shadow-lg hover:shadow-indigo-500/10 ${
+                  className={`relative flex h-16 w-16 cursor-grab items-center justify-center rounded-xl border-2 border-slate-200/80 bg-white/90 p-2.5 backdrop-blur-sm transition-all duration-200 active:cursor-grabbing hover:rotate-0 hover:scale-110 hover:border-indigo-300 hover:shadow-lg hover:shadow-indigo-500/10 ${
                     isBeingDragged ? "scale-95 opacity-30" : "opacity-100"
                   }`}
                   style={{
@@ -490,7 +498,7 @@ export default function App() {
         </div>
 
         <div className="mt-6 text-center text-xs font-medium text-slate-600">
-          <p>Click and drag any digit to move it between tiers or rearrange it</p>
+          <p>Click and drag any item to move it between tiers or rearrange it</p>
         </div>
       </div>
 

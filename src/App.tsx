@@ -65,8 +65,8 @@ function HomeScreen() {
             href="#number-rankings"
             accentClass="border-amber-500/20 hover:border-amber-500/50 hover:text-amber-400"
             icon="Rank"
-            title="Number Rankings"
-            subtitle="Hand-drawn Tier List"
+            title="Objective Rankings"
+            subtitle="Factually based Tier List"
           />
           <ProjectCard
             href="#draw-canvas"

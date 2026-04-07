@@ -27,8 +27,7 @@ export const NUMERAL_DEFINITIONS: NumeralDefinition[] = [
     label: "0",
     svg: (
       <svg viewBox="0 0 100 100" className="h-full w-full">
-        <path d="M50 15 C30 15 20 35 20 50 C20 70 35 85 50 85 C65 85 80 70 80 50 C80 35 70 15 50 15 Z" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-        <ellipse cx="50" cy="50" rx="25" ry="35" fill="none" stroke="currentColor" strokeWidth="3" strokeDasharray="5,3" opacity="0.6" />
+        <path d="M50 14 C72 14 84 30 84 50 C84 70 72 86 50 86 C28 86 16 70 16 50 C16 30 28 14 50 14 Z" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },
@@ -37,8 +36,7 @@ export const NUMERAL_DEFINITIONS: NumeralDefinition[] = [
     label: "1",
     svg: (
       <svg viewBox="0 0 100 100" className="h-full w-full">
-        <path d="M55 20 L45 25 L45 80 L35 85 L40 90 L60 85 L60 25 L75 20 Z" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M45 35 L55 30" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.5" />
+        <path d="M38 30 L57 18 L57 82" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },
@@ -47,8 +45,7 @@ export const NUMERAL_DEFINITIONS: NumeralDefinition[] = [
     label: "2",
     svg: (
       <svg viewBox="0 0 100 100" className="h-full w-full">
-        <path d="M25 25 C35 15 65 15 75 25 C80 30 80 40 70 50 L30 80 L80 80" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M35 30 C40 25 60 25 65 30" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.4" />
+        <path d="M24 32 C28 14 74 14 76 30 C78 42 66 54 54 62 L24 82 L76 82" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },
@@ -57,8 +54,14 @@ export const NUMERAL_DEFINITIONS: NumeralDefinition[] = [
     label: "3",
     svg: (
       <svg viewBox="0 0 100 100" className="h-full w-full">
-        <path d="M30 20 C50 15 70 20 75 35 C78 45 70 50 60 50 C70 50 80 55 80 70 C78 85 55 90 30 85" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M40 30 C55 25 65 30 68 40" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.4" />
+        <path
+          d="M 27.5 28 C 37.5 15 72.5 15 72.5 38 C 72.5 50 57.5 50 42.5 50 C 57.5 50 72.5 50 72.5 62 C 72.5 85 37.5 85 27.5 72"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="10"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
       </svg>
     ),
   },
@@ -67,8 +70,7 @@ export const NUMERAL_DEFINITIONS: NumeralDefinition[] = [
     label: "4",
     svg: (
       <svg viewBox="0 0 100 100" className="h-full w-full">
-        <path d="M60 15 L35 60 L25 60 L25 70 L35 70 L35 85 L45 85 L45 70 L70 70 L70 60 L45 60 L65 25 Z" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M40 50 L55 50" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.5" />
+        <path d="M62 18 L26 64 L74 64 M62 18 L62 84" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },
@@ -77,8 +79,7 @@ export const NUMERAL_DEFINITIONS: NumeralDefinition[] = [
     label: "5",
     svg: (
       <svg viewBox="0 0 100 100" className="h-full w-full">
-        <path d="M70 20 L40 20 L35 40 L45 45 C60 35 75 45 75 60 C75 75 60 85 40 85 C25 85 20 75 20 65" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M45 50 C55 45 65 50 68 60" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.4" />
+        <path d="M70 20 L30 20 L26 52 C36 42 66 44 74 58 C80 70 72 84 54 86 C36 88 22 76 20 64" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },
@@ -87,8 +88,7 @@ export const NUMERAL_DEFINITIONS: NumeralDefinition[] = [
     label: "6",
     svg: (
       <svg viewBox="0 0 100 100" className="h-full w-full">
-        <path d="M60 20 C40 15 25 30 25 50 C25 70 40 85 55 85 C70 85 80 75 80 65 C80 55 70 50 55 50 C40 50 35 60 35 65" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-        <ellipse cx="50" cy="65" rx="15" ry="15" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.4" />
+        <path d="M65 18 C40 10 18 28 18 52 C18 74 36 88 54 86 C72 84 82 70 80 58 C78 46 64 40 50 42 C36 44 26 56 28 64" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },
@@ -97,8 +97,7 @@ export const NUMERAL_DEFINITIONS: NumeralDefinition[] = [
     label: "7",
     svg: (
       <svg viewBox="0 0 100 100" className="h-full w-full">
-        <path d="M25 20 L75 20 L50 85 L40 85 L60 30 L30 30" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M35 25 L65 25" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.5" />
+        <path d="M22 20 L78 20 L44 84" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },
@@ -107,9 +106,8 @@ export const NUMERAL_DEFINITIONS: NumeralDefinition[] = [
     label: "8",
     svg: (
       <svg viewBox="0 0 100 100" className="h-full w-full">
-        <ellipse cx="50" cy="35" rx="25" ry="20" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
-        <ellipse cx="50" cy="65" rx="28" ry="22" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
-        <ellipse cx="50" cy="35" rx="15" ry="12" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.4" />
+        <ellipse cx="50" cy="33" rx="24" ry="18" fill="none" stroke="currentColor" strokeWidth="10" />
+        <ellipse cx="50" cy="67" rx="26" ry="20" fill="none" stroke="currentColor" strokeWidth="10" />
       </svg>
     ),
   },
@@ -118,8 +116,7 @@ export const NUMERAL_DEFINITIONS: NumeralDefinition[] = [
     label: "9",
     svg: (
       <svg viewBox="0 0 100 100" className="h-full w-full">
-        <path d="M40 80 C60 85 75 70 75 50 C75 30 60 15 45 15 C30 15 20 25 20 35 C20 45 30 50 45 50 C60 50 65 40 65 35" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-        <ellipse cx="50" cy="35" rx="15" ry="15" fill="none" stroke="currentColor" strokeWidth="2" opacity="0.4" />
+        <path d="M35 82 C60 90 82 72 82 48 C82 26 64 12 46 14 C28 16 18 30 20 42 C22 54 36 60 50 58 C64 56 74 44 72 36" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },
@@ -129,8 +126,7 @@ export const NUMERAL_DEFINITIONS: NumeralDefinition[] = [
     variantLabel: "Curly 2",
     svg: (
       <svg viewBox="0 0 100 100" className="h-full w-full">
-        <path d="M26 28 C34 16 56 14 69 22 C78 28 79 41 70 49 C62 56 47 60 39 67 C31 73 31 81 42 82 L74 82" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M39 31 C45 24 58 24 63 30" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.45" />
+        <path d="M26 28 C34 16 56 14 69 22 C78 28 79 41 70 49 C62 56 47 60 39 67 C31 73 31 81 42 82 L74 82" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },
@@ -140,8 +136,7 @@ export const NUMERAL_DEFINITIONS: NumeralDefinition[] = [
     variantLabel: "Boxy 4",
     svg: (
       <svg viewBox="0 0 100 100" className="h-full w-full">
-        <path d="M62 18 L30 18 L30 54 L64 54 L64 84 M64 18 L64 84" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M30 54 L74 54" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity="0.45" />
+        <path d="M30 18 L30 54 L64 54 M64 18 L64 84" fill="none" stroke="currentColor" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
   },
