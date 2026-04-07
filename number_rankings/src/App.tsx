@@ -1,7 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   NUMERAL_BY_ID,
-  NUMERAL_IDS,
   type NumeralId,
 } from "./numerals";
 
@@ -45,6 +44,20 @@ const ITEM_SIZE = 64;
 const ITEM_GAP = 10;
 const ITEM_SLOT = ITEM_SIZE + ITEM_GAP;
 const PLACEHOLDER_ID = "__placeholder__";
+const INITIAL_POOL_ORDER: NumeralId[] = [
+  "8",
+  "2-curly",
+  "1",
+  "7",
+  "4-boxy",
+  "0",
+  "5",
+  "3",
+  "9",
+  "2",
+  "6",
+  "4",
+];
 
 const getScatteredStyle = (itemId: NumeralId) => {
   const seed = Array.from(itemId).reduce(
@@ -80,7 +93,7 @@ export default function App() {
     a: [],
     b: [],
   });
-  const [poolItems, setPoolItems] = useState<NumeralId[]>(() => [...NUMERAL_IDS]);
+  const [poolItems, setPoolItems] = useState<NumeralId[]>(() => [...INITIAL_POOL_ORDER]);
   const [dragState, setDragState] = useState<DragState | null>(null);
   const [dropTarget, setDropTarget] = useState<{
     tierId: string | null;
