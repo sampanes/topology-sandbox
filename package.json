@@ -4,9 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --strictPort",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview --strictPort"
   },
   "dependencies": {
     "@types/reveal.js": "^5.2.2",
